@@ -1,24 +1,32 @@
 PROJECT_NAME           = "CppLogicMake"
 PROJECT_BRIEF          = "Prolog-resolved C++ build graphs, transpiled to CMake"
+PROJECT_LOGO           = resources/logo.svg
 OUTPUT_DIRECTORY       = doxygen-output
 CREATE_SUBDIRS         = NO
 
-INPUT                  = src Readme.md docs
+INPUT                  = src docs
 FILE_PATTERNS          = *.cpp *.hpp *.h *.md
 RECURSIVE              = YES
-USE_MDFILE_AS_MAINPAGE = Readme.md
+EXCLUDE                = docs/gen_mainpage.sh
+USE_MDFILE_AS_MAINPAGE = docs/mainpage.md
 
 EXTRACT_ALL             = YES
 EXTRACT_PRIVATE         = NO
 EXTRACT_STATIC          = YES
 SOURCE_BROWSER          = YES
-GENERATE_TREEVIEW       = YES
 FULL_PATH_NAMES         = YES
 STRIP_FROM_PATH         = .
 
 GENERATE_HTML           = YES
 GENERATE_LATEX          = NO
 HTML_OUTPUT             = html
+
+GENERATE_TREEVIEW       = YES
+DISABLE_INDEX           = NO
+FULL_SIDEBAR            = NO
+HTML_COLORSTYLE         = LIGHT
+HTML_EXTRA_STYLESHEET   = external/doxygen-awesome-css/doxygen-awesome.css \
+                          external/doxygen-awesome-css/doxygen-awesome-sidebar-only.css
 
 HAVE_DOT                = YES
 DOT_IMAGE_FORMAT        = svg
