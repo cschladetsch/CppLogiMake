@@ -1,0 +1,32 @@
+PROJECT_NAME           = "CppLogicMake"
+PROJECT_BRIEF          = "Prolog-resolved C++ build graphs, transpiled to CMake"
+OUTPUT_DIRECTORY       = doxygen-output
+CREATE_SUBDIRS         = NO
+
+INPUT                  = src Readme.md docs
+FILE_PATTERNS          = *.cpp *.hpp *.h *.md
+RECURSIVE              = YES
+USE_MDFILE_AS_MAINPAGE = Readme.md
+
+EXTRACT_ALL             = YES
+EXTRACT_PRIVATE         = NO
+EXTRACT_STATIC          = YES
+SOURCE_BROWSER          = YES
+GENERATE_TREEVIEW       = YES
+FULL_PATH_NAMES         = YES
+STRIP_FROM_PATH         = .
+
+GENERATE_HTML           = YES
+GENERATE_LATEX          = NO
+HTML_OUTPUT             = html
+
+HAVE_DOT                = YES
+DOT_IMAGE_FORMAT        = svg
+CALL_GRAPH              = YES
+CALLER_GRAPH            = YES
+COLLABORATION_GRAPH     = YES
+CLASS_GRAPH             = YES
+UML_LOOK                = YES
+
+QUIET                   = YES
+WARN_IF_UNDOCUMENTED    = NO
