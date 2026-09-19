@@ -1,0 +1,43 @@
+---
+Language: Cpp
+BasedOnStyle: LLVM
+Standard: Latest
+
+IndentWidth: 4
+ColumnLimit: 80
+UseTab: Never
+
+BreakBeforeBraces: Attach
+NamespaceIndentation: None
+IndentCaseLabels: true
+AccessModifierOffset: -4
+ConstructorInitializerIndentWidth: 4
+ContinuationIndentWidth: 4
+
+AlignAfterOpenBracket: Align
+AlignConsecutiveAssignments: false
+AlignConsecutiveDeclarations: false
+AlignTrailingComments: true
+AllowShortFunctionsOnASingleLine: Empty
+AllowShortIfStatementsOnASingleLine: false
+AllowShortLoopsOnASingleLine: false
+BinPackArguments: true
+BinPackParameters: true
+
+PointerAlignment: Left
+ReferenceAlignment: Left
+SpaceAfterTemplateKeyword: true
+SpaceBeforeParens: ControlStatements
+
+SortIncludes: true
+IncludeBlocks: Regroup
+IncludeCategories:
+  - Regex: '^<[^.]+>'         # standard library headers (no dot, e.g. <vector>)
+    Priority: 1
+  - Regex: '^<.*\.h(pp)?>'    # third-party angle-bracket headers with extensions
+    Priority: 2
+  - Regex: '^".*"'            # project-local headers
+    Priority: 3
+
+FixNamespaceComments: true
+DerivePointerAlignment: false
