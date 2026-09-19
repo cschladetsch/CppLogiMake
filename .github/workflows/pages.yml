@@ -39,8 +39,13 @@ jobs:
         with:
           submodules: recursive
 
-      - name: Install Doxygen and Graphviz
-        run: sudo apt-get update && sudo apt-get install -y doxygen graphviz
+      - name: Install Graphviz
+        run: sudo apt-get update && sudo apt-get install -y graphviz
+
+      - name: Install Doxygen
+        uses: ssciwr/doxygen-install@v1
+        with:
+          version: "1.13.2"
 
       - name: Generate mainpage
         run: bash docs/gen_mainpage.sh
