@@ -1,5 +1,7 @@
 # <img src="resources/logo.svg" alt="logimake logo" height="64" align="middle" /> CppLogicMake
 
+[![Docs](https://img.shields.io/badge/docs-online-blue)](https://cschladetsch.github.io/CppLogiMake/)
+
 Prolog-resolved C++ build graphs, transpiled to CMake.
 
 CppLogicMake replaces CMake's authoring layer — not its generator
