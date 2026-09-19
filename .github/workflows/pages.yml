@@ -43,7 +43,7 @@ jobs:
         run: sudo apt-get update && sudo apt-get install -y doxygen graphviz
 
       - name: Generate mainpage
-        run: ./docs/gen_mainpage.sh
+        run: bash docs/gen_mainpage.sh
 
       - name: Generate docs
         run: doxygen Doxyfile
