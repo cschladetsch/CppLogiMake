@@ -47,8 +47,8 @@ jobs:
         with:
           version: "1.13.2"
 
-      - name: Generate mainpage
-        run: bash docs/gen_mainpage.sh
+      - name: Generate mainpage (renders Mermaid diagrams to SVG)
+        run: python3 docs/gen_mainpage.py
 
       - name: Generate docs
         run: doxygen Doxyfile
