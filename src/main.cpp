@@ -122,8 +122,10 @@ bool runJob(const Args& args, const Job& job,
                       << job.input.string() << "\n";
         }
 
-        const auto cmake =
-            logicmake::emitCMakeLists(targets, gitStamp, job.output.parent_path());
+        const auto packages = resolver.resolvePackages();
+
+        const auto cmake = logicmake::emitCMakeLists(
+            targets, gitStamp, job.output.parent_path(), packages);
 
         std::ofstream out(job.output);
         if (!out) {
@@ -222,4 +224,20 @@ int main(int argc, char** argv) {
     }
 
     return resolveAll(*args, jobs) ? 0 : 1;
+}
+
+inline void RegisterSubmoduleIncludes(const fs::path& repoRoot, std::vector<fs::path>& includeDirs) {
+    auto submodules = DiscoverSubmodules(repoRoot);
+    for (const auto& sub : submodules) {
+        fs::path subInclude = repoRoot / sub.path / "include";
+        if (fs::exists(subInclude)) {
+            includeDirs.push_back(subInclude);
+        } else {
+            // Fallback to root of submodule if no explicit include folder exists
+            fs::path subRoot = repoRoot / sub.path;
+            if (fs::exists(subRoot)) {
+                includeDirs.push_back(subRoot);
+            }
+        }
+    }
 }

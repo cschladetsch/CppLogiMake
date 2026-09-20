@@ -30,6 +30,7 @@ namespace logicmake {
 [[nodiscard]] std::string emitCMakeLists(
     const std::vector<TargetInfo>& targets,
     const std::optional<std::string>& gitStamp = std::nullopt,
-    const std::filesystem::path& outputDir = {});
+    const std::filesystem::path& outputDir = {},
+    const std::vector<PackageInfo>& packages = {});
 
 }  // namespace logicmake

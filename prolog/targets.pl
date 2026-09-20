@@ -51,6 +51,22 @@
 %                                the underlying `git ls-files` call already
 %                                resolves through a checked-out submodule
 %                                like any other tracked path.
+% package(PkgName, Mode).        project-level fact (no target arg):
+%                                declares that the generated CMakeLists.txt
+%                                must locate an external package before any
+%                                target is declared, e.g.
+%                                package("GTest", "CONFIG"). emits
+%                                find_package(GTest CONFIG REQUIRED) at the
+%                                top of the file. Mode is "CONFIG", "MODULE",
+%                                or "" (no mode keyword — let CMake pick).
+%                                This is deliberately narrow: it only ever
+%                                emits find_package, one call per distinct
+%                                PkgName, in the order first declared. It
+%                                does not model version constraints,
+%                                COMPONENTS, or FetchContent fallback — the
+%                                imported target(s) the package provides
+%                                (e.g. GTest::gtest_main) are then referenced
+%                                the ordinary way, through depends/link facts.
 % platform(windows). / platform(linux). / platform(macos).
 % debug.                         asserted only in debug configs
 % cross_compiling.

@@ -22,7 +22,9 @@ Checks: >
   -cppcoreguidelines-non-private-member-variables-in-classes,
   -misc-non-private-member-variables-in-classes,
   -cppcoreguidelines-avoid-do-while,
-  -bugprone-easily-swappable-parameters
+  -bugprone-easily-swappable-parameters,
+  -cppcoreguidelines-pro-bounds-avoid-unchecked-container-access,
+  -modernize-use-designated-initializers
 
 WarningsAsErrors: ''
 

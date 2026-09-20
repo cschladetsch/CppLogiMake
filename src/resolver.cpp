@@ -108,4 +108,24 @@ std::vector<SubmoduleInfo> Resolver::resolveSubmodules() const {
     return result;
 }
 
+std::vector<PackageInfo> Resolver::resolvePackages() const {
+    PrologEngine engine;
+    engine.loadFile(schemaPath_);
+    engine.loadFile(projectPath_);
+
+    std::vector<PackageInfo> result;
+    std::unordered_map<std::string, size_t> seen;
+    for (const auto& row : engine.query("package(N,M)", {"N", "M"})) {
+        const auto name = stripQuotes(row[0]);
+        const auto mode = stripQuotes(row[1]);
+        auto it = seen.find(name);
+        if (it != seen.end()) {
+            continue;  // first-declared Mode for a given package wins
+        }
+        seen.emplace(name, result.size());
+        result.push_back({name, mode});
+    }
+    return result;
+}
+
 }  // namespace logicmake

@@ -45,6 +45,14 @@ struct SubmoduleInfo {
     std::string path;
 };
 
+// A project-level package(Name, Mode) fact — see prolog/targets.pl.
+// Not target-scoped, so it lives outside TargetInfo, same as
+// SubmoduleInfo — see Resolver::resolvePackages.
+struct PackageInfo {
+    std::string name;
+    std::string mode;  // "CONFIG" | "MODULE" | "" (no mode keyword)
+};
+
 class Resolver {
 public:
     // schemaPath: prolog/targets.pl
@@ -59,6 +67,11 @@ public:
     // against the filesystem before trusting any sources/2 fact that
     // reaches into Path.
     [[nodiscard]] std::vector<SubmoduleInfo> resolveSubmodules() const;
+
+    // Project-level package(Name, Mode) facts, in first-declared order,
+    // deduplicated by name (a package needs locating only once no matter
+    // how many targets depend on the imported targets it provides).
+    [[nodiscard]] std::vector<PackageInfo> resolvePackages() const;
 
 private:
     std::filesystem::path schemaPath_;
