@@ -226,18 +226,3 @@ int main(int argc, char** argv) {
     return resolveAll(*args, jobs) ? 0 : 1;
 }
 
-inline void RegisterSubmoduleIncludes(const std::filesystem::path& repoRoot, std::vector<std::filesystem::path>& includeDirs) {
-    auto submodules = DiscoverSubmodules(repoRoot);
-    for (const auto& sub : submodules) {
-        std::filesystem::path subInclude = repoRoot / sub.path / "include";
-        if (std::filesystem::exists(subInclude)) {
-            includeDirs.push_back(subInclude);
-        } else {
-            // Fallback to root of submodule if no explicit include folder exists
-            std::filesystem::path subRoot = repoRoot / sub.path;
-            if (std::filesystem::exists(subRoot)) {
-                includeDirs.push_back(subRoot);
-            }
-        }
-    }
-}
